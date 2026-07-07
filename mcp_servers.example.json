@@ -1,0 +1,21 @@
+{
+  "_설명": "이 파일은 형식 예시입니다. 실제로 쓰려면 mcp_servers.json 에 아래 형태로 서버를 채우세요. (이 example 파일은 로드되지 않습니다.)",
+
+  "filesystem": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+    "transport": "stdio"
+  },
+
+  "notion": {
+    "command": "npx",
+    "args": ["-y", "@notionhq/notion-mcp-server"],
+    "env": { "NOTION_API_KEY": "여기에-키" },
+    "transport": "stdio"
+  },
+
+  "github": {
+    "url": "https://api.githubcopilot.com/mcp/",
+    "transport": "streamable_http"
+  }
+}

@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 .langgraph_api/
 workspace/
+mcp_servers.json

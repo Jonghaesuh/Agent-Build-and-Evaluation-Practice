@@ -120,14 +120,17 @@ def _web_search_tools() -> list:
 def _mcp_tools() -> list:
     """MCP 커넥터. 프로젝트 루트의 mcp_servers.json 이 있으면 로드.
 
-    mcp_servers.json 예시:
-    {
-      "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "."], "transport": "stdio"},
-      "github": {"url": "https://api.githubcopilot.com/mcp/", "transport": "streamable_http"}
-    }
+    형식은 mcp_servers.example.json 참고. 빈 `{}` 면 아무것도 붙지 않는다.
     """
     config_path = Path("mcp_servers.json")
     if not config_path.exists():
+        return []
+    try:
+        servers = json.loads(config_path.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"[connector] mcp_servers.json 파싱 실패(무시): {e}")
+        return []
+    if not servers:  # 빈 템플릿({}) 이면 조용히 건너뛴다
         return []
     try:
         from langchain_mcp_adapters.client import MultiServerMCPClient
@@ -135,7 +138,6 @@ def _mcp_tools() -> list:
         print("[connector] langchain-mcp-adapters 미설치 — MCP 커넥터 건너뜀")
         return []
     try:
-        servers = json.loads(config_path.read_text(encoding="utf-8"))
         client = MultiServerMCPClient(servers)
         tools = _run_async(client.get_tools())
         print(f"[connector] MCP 서버 {len(servers)}개에서 도구 {len(tools)}개 로드")
