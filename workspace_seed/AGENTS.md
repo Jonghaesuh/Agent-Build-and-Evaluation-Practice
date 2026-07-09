@@ -13,8 +13,8 @@
   - `Data & Model Agent`: 요구사항 분석 → 데이터 전처리 → 모델 개발 → Fallback 코드까지 통합 담당
   - `Reporting Agent`: 성능 평가 → 결과 분석 → PPT/Markdown 보고서 생성 담당
 - 각 에이전트의 시스템 프롬프트와 작업 절차는 `skills/<skill-name>/SKILL.md` 파일을
-  기준으로 참고한다. 현재 워크스페이스에는 `data-model-agent`와 `reporting-agent` 두
-  개의 스킬 디렉터리가 존재한다.
+  기준으로 참고한다. 현재 워크스페이스에는 `orchestrator-agent`, `data-model-agent`,
+  `reporting-agent` 세 개의 스킬 디렉터리가 존재한다.
 
 ## 디렉토리 구조
 
@@ -22,6 +22,8 @@
 workspace_seed/
 ├── AGENTS.md
 └── skills/
+    ├── orchestrator-agent/
+    │   └── SKILL.md
     ├── data-model-agent/
     │   └── SKILL.md
     └── reporting-agent/
