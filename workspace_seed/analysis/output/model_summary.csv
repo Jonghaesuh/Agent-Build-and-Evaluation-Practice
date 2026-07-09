@@ -1,0 +1,4 @@
+model,auc,ap,precision_high_risk,recall_high_risk,f1_high_risk
+logistic_regression,0.4552,0.0685,0.125,0.1667,0.1429
+random_forest,0.7059,0.307,0.0,0.0,0.0
+hist_gbdt,0.5966,0.0794,0.0,0.0,0.0
